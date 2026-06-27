@@ -4,13 +4,25 @@ import portrait from "../../assets/about/portrait.jpg";
 import Tilt from "react-parallax-tilt";
 import DownButton from "../DownButton";
 import Activities from "./Activities";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 function Home2() {
+  const avatarReveal = useScrollReveal<HTMLDivElement>({
+    variant: "fade-right",
+    threshold: 0.15,
+  });
+
+  const descReveal = useScrollReveal<HTMLDivElement>({
+    variant: "fade-left",
+    delay: 150,
+    threshold: 0.15,
+  });
+
   return (
     <Container fluid className="home-about-section" id="home">
       <Container id="home2">
         <Row style={{ paddingBottom: "0px" }}>
-          <Col md={4} className="myAvtar">
+          <Col md={4} className="myAvtar" ref={avatarReveal.ref} style={avatarReveal.style}>
             <Tilt>
               <img
                 src={portrait}
@@ -19,7 +31,7 @@ function Home2() {
               />
             </Tilt>
           </Col>
-          <Col md={8} className="home-about-description">
+          <Col md={8} className="home-about-description" ref={descReveal.ref} style={descReveal.style}>
             <h1 className="home-about-title">
               LET ME <span className="navy-accent"> INTRODUCE </span> MYSELF
             </h1>

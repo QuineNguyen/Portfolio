@@ -34,6 +34,8 @@ button:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
 }
 
 #preloader::after {
@@ -53,8 +55,15 @@ button:focus {
 }
 
 #preloader-none {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
   opacity: 0;
   pointer-events: none;
+  transition: opacity 0.5s ease-out;
 }
 
 #no-scroll {
@@ -878,6 +887,7 @@ body {
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
+  overflow-x: hidden;
 }
 
 /* --------- */

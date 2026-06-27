@@ -6,13 +6,37 @@ import DownButton from "../DownButton";
 import naver from "../../assets/certificates/naver.jpg";
 import samsung from "../../assets/certificates/samsung.jpg";
 import toeic from "../../assets/certificates/toeic.jpg";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 function Certificates() {
+  const headingReveal = useScrollReveal<HTMLHeadingElement>({
+    variant: "fade-down",
+    threshold: 0.2,
+  });
+
+  const card1Reveal = useScrollReveal<HTMLDivElement>({
+    variant: "fade-up",
+    delay: 0,
+    threshold: 0.1,
+  });
+
+  const card2Reveal = useScrollReveal<HTMLDivElement>({
+    variant: "fade-up",
+    delay: 150,
+    threshold: 0.1,
+  });
+
+  const card3Reveal = useScrollReveal<HTMLDivElement>({
+    variant: "fade-up",
+    delay: 300,
+    threshold: 0.1,
+  });
+
   return (
     <Container fluid className="project-section" id="certificates">
       <Particle />
       <Container>
-        <h1 className="project-heading">
+        <h1 className="project-heading" ref={headingReveal.ref} style={headingReveal.style}>
           My <strong className="navy-accent">Certificates</strong>
         </h1>
         <p style={{ color: "white" }}>
@@ -25,7 +49,7 @@ function Certificates() {
             marginBottom: "10px",
           }}
         >
-          <Col md={4} className="project-card">
+          <Col md={4} className="project-card" ref={card1Reveal.ref} style={card1Reveal.style}>
             <CertificateCards
               imgPath={naver}
               title="Artificial Intelligence with Python"
@@ -33,7 +57,7 @@ function Certificates() {
             />
           </Col>
 
-          <Col md={4} className="project-card">
+          <Col md={4} className="project-card" ref={card2Reveal.ref} style={card2Reveal.style}>
             <CertificateCards
               imgPath={samsung}
               title="Samsung Application of Algorithms"
@@ -41,7 +65,7 @@ function Certificates() {
             />
           </Col>
 
-          <Col md={4} className="project-card">
+          <Col md={4} className="project-card" ref={card3Reveal.ref} style={card3Reveal.style}>
             <CertificateCards
               imgPath={toeic}
               title="TOEIC Listening and Reading"
